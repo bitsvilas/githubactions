@@ -24,6 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get code
         uses: actions/checkout@v3
+
 #Code download end
 #Install java and maven
       - name: Set up JDK 11
@@ -36,6 +37,3 @@ jobs:
 #Build           
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-     
-        
