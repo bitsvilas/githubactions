@@ -35,5 +35,5 @@ jobs:
           cache: maven
 #Install java and maven done
 #Build           
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
