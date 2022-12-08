@@ -42,7 +42,7 @@ jobs:
       - name: Run unit test
         run: mvn test       
       - name: Upload artifacts
-        uses: actions/upload-artifacts@v3
+        uses: actions/upload-artifact@v3
         with:
           name: target 
           path: target           
@@ -58,7 +58,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Download artifacts
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
       - name: Deploy
         run: echo "Deploy code"
        
