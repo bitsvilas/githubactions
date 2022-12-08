@@ -1,0 +1,11 @@
+name: Hello World 
+
+# Controls when the workflow will run
+on:
+  hello-world: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Hello
+        run: echo "Hello World!!"
+      - name: Goodbye
+        run: echo "Good bye!!"
