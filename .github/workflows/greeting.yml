@@ -1,8 +1,9 @@
 name: Hello World 
 
 # Controls when the workflow will run
-on:
-  hello-world: 
+on: workflow_dispatch
+jobs: 
+  hello-world:
     runs-on: ubuntu-latest
     steps: 
       - name: Hello
