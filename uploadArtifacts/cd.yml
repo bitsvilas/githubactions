@@ -52,9 +52,11 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     
-    #This would trigger an approval 
+    #This would trigger an approval
+    #Create an env. following https://cloudlumberjack.com/posts/github-actions-approvals/    
 #Step 3
     environment: 'Development'
+    
     #needs helps to define them sequentially
 #Step 2
     needs: ci 
