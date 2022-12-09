@@ -4,8 +4,8 @@ name: CD
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-#  push:
-#    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -50,25 +50,38 @@ jobs:
           path: target           
 #We can define and run multiple jobs as follows - 
 #CD 
-  cd:
-    # The type of runner that the job will run on
+  DeployDev:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    needs: [Build]
     runs-on: ubuntu-latest
-    
-    #This would trigger an approval
-    #Create an env. following https://cloudlumberjack.com/posts/github-actions-approvals/    
-#Step 3
-    environment: 'Development'
-    
-    #needs helps to define them sequentially
-#Step 2
-    needs: ci 
-    #needs: [checkout, build, lint, image]
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    environment: 
+      name: Development
+      url: 'http://dev.myapp.com'
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
       - name: Deploy
-        run: echo "Deploy code"
-       
+        run: echo I am deploying! 
+    
+  DeployStaging:
+    name: Deploy to Staging 
+    if: github.event.ref == 'refs/heads/main'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Staging
+      url: 'http://test.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+            
+  DeployProd:
+    name: Deploy to Production 
+    needs: [DeployStaging]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Production
+      url: 'http://www.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+    
